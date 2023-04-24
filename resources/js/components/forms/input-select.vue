@@ -25,7 +25,7 @@
                         </template>
                         <div v-else class="flex items-center space-x-3 w-full pl-3 pr-10 py-2">
                             <template v-if="!anySelected">
-                                <span class="block truncate">{{ $t('Select an option') }}</span>
+                                <span class="block truncate">{{ $t('Selecciona una opcion') }}</span>
                             </template>
                             <template v-else-if="multiple">
                                 <span class="block truncate">{{ $t('Selected') }} {{ Object.keys(selected).length }} {{ $t('options') }}</span>

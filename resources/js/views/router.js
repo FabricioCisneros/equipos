@@ -24,6 +24,7 @@ import DashboardCannedRepliesEdit from "@/views/pages/dashboard/canned-replies/e
 import DashboardTicketsList from "@/views/pages/dashboard/tickets/list";
 import DashboardTicketsNew from "@/views/pages/dashboard/tickets/new";
 import DashboardTicketsManage from "@/views/pages/dashboard/tickets/manage";
+import DashboardTicketsEdit from "@/views/pages/dashboard/tickets/editEquipo"
 
 import AdminDashboardDepartmentsList from "@/views/pages/dashboard/admin/departments/list";
 import AdminDashboardDepartmentsNew from "@/views/pages/dashboard/admin/departments/new";
@@ -102,9 +103,10 @@ let routes = [
         children: [
             {path: 'home', component: DashboardHomePage, meta: {middleware: 'auth', dashboard_access: true}},
 
-            {path: 'tickets', component: DashboardTicketsList, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.TicketController'}},
-            {path: 'tickets/new', component: DashboardTicketsNew, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.TicketController'}},
-            {path: 'tickets/:uuid/manage', component: DashboardTicketsManage, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.TicketController'}},
+            {path: 'Equipos', component: DashboardTicketsList, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.TicketController'}},
+            {path: 'Equipos/new', component: DashboardTicketsNew, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.TicketController'}},
+            {path: 'Equipos/:uuid/manage', component: DashboardTicketsManage, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.TicketController'}},
+            {path: 'Equipos/:uuid/edit', component: DashboardTicketsEdit, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.TicketController'}},
 
             
 

@@ -5,13 +5,13 @@
         </div>
         <menu-item :label="$t('Dashboard')" :mobile="mobile" icon="font-awesome.tachometer-alt-regular"
             to="/dashboard/home"></menu-item>
-        <menu-item
+        <!-- <menu-item
             v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.TicketController']"
-            :label="$t('Tickets')" :mobile="mobile" icon="font-awesome.inbox-regular" to="/dashboard/tickets"></menu-item>
+            :label="$t('Tickets')" :mobile="mobile" icon="font-awesome.inbox-regular" to="/dashboard/tickets"></menu-item> -->
 
         <menu-item
             v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.TicketController']"
-            :label="$t('Equipos')" :mobile="mobile" icon="font-awesome.device-regular" to="/dashboard/equipos"></menu-item>
+            :label="$t('Equipos')" :mobile="mobile" icon="font-awesome.device-regular" to="/dashboard/Equipos"></menu-item>
         <!-- <menu-item
             v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.CannedReplyController']"
             :label="$t('Canned replies')" :mobile="mobile" icon="font-awesome.comments-alt-regular"
@@ -37,8 +37,12 @@
             :label="$t('Statuses')" :mobile="mobile" icon="font-awesome.tasks-regular"
             to="/dashboard/admin/statuses"></menu-item>
         <menu-item
+            v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.StatusController']"
+            :label="$t('Turnos')" :mobile="mobile" icon="font-awesome.clock-regular"
+            to="/dashboard/admin/turnos"></menu-item>
+        <menu-item
             v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.SettingController']"
-            :label="$t('oficinas')" :mobile="mobile" icon="font-awesome.apartment-regular"
+            :label="$t('Oficinas')" :mobile="mobile" icon="font-awesome.apartment-regular"
             to="/dashboard/admin/oficinas"></menu-item>
         <menu-item
             v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.SettingController']"

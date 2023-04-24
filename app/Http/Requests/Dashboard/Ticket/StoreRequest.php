@@ -24,12 +24,9 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => ['required', 'exists:users,id'],
-            'subject' => ['required', 'max:255'],
-            'department_id' => ['required', 'exists:departments,id'],
-            'status_id' => ['required', 'exists:statuses,id'],
-            'priority_id' => ['required', 'exists:priorities,id'],
-            'body' => ['required'],
+            'oficina_id' => ['required', 'exists:oficinas,id'],
+            'categoria_id' => ['required', 'exists:categorias,id'],
+            'modelo' => ['required', 'max:255'],
         ];
     }
 
@@ -41,22 +38,17 @@ class StoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'user_id.required' => __('The :attribute field is required', ['attribute' => __('customer')]),
-            'user_id.exists' => __('The selected :attribute is invalid', ['attribute' => __('customer')]),
+            'oficina_id.required' => __('El campo :attribute es necesario', ['attribute' => __('oficina')]),
+            'oficina_id.exists' => __('El campo :attribute es invalido', ['attribute' => __('oficina')]),
 
-            'subject.required' => __('The :attribute field is required', ['attribute' => __('subject')]),
-            'subject.max' => __('The :attribute may not be greater than :max characters', ['attribute' => __('subject'), 'max' => 255]),
+            'categoria_id.required' => __('El campo :attribute es necesario', ['attribute' => __('categoria')]),
+            'categoria_id.exists' => __('El campo :attribute es invalido', ['attribute' => __('categoria')]),
 
-            'department_id.required' => __('The :attribute field is required', ['attribute' => __('department')]),
-            'department_id.exists' => __('The selected :attribute is invalid', ['attribute' => __('department')]),
+            'modelo.required' => __('el campo :attribute es necesario', ['attribute' => __('modelo')]),
+            'modelo.max' => __('El campo :attribute no debe ser mayor a  :max caracteres', ['attribute' => __('modelo'), 'max' => 255]),
 
             'status_id.required' => __('The :attribute field is required', ['attribute' => __('status')]),
             'status_id.exists' => __('The selected :attribute is invalid', ['attribute' => __('status')]),
-
-            'priority_id.required' => __('The :attribute field is required', ['attribute' => __('priority')]),
-            'priority_id.exists' => __('The selected :attribute is invalid', ['attribute' => __('priority')]),
-
-            'body.required' => __('The :attribute field is required', ['attribute' => __('body')]),
         ];
     }
 }

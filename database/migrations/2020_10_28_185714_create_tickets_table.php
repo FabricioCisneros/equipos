@@ -17,13 +17,12 @@ class CreateTicketsTable extends Migration
             Schema::create('tickets', function (Blueprint $table) {
                 $table->id();
                 $table->uuid('uuid')->index();
-                $table->string('subject');
+                $table->string('numero_serie');
+                $table->string('modelo');
+                $table->string('descripcion');
                 $table->foreignId('status_id')->nullable()->constrained('statuses')->nullOnDelete();
-                $table->foreignId('priority_id')->nullable()->constrained('priorities')->nullOnDelete();
-                $table->foreignId('department_id')->nullable()->constrained('departments')->nullOnDelete();
-                $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
-                $table->foreignId('agent_id')->nullable()->constrained('users')->nullOnDelete();
-                $table->foreignId('closed_by')->nullable()->constrained('users')->nullOnDelete();
+                $table->foreignId('categoria_id')->nullable()->constrained('categorias')->nullOnDelete();
+                $table->foreignId('oficina_id')->nullable()->constrained('oficinas')->nullOnDelete();
                 $table->timestamp('closed_at')->nullable();
                 $table->timestamps();
             });

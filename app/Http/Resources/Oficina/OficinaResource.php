@@ -20,7 +20,6 @@ class OficinaResource extends JsonResource
             'id' => $oficina->id,
             'name' => $oficina->name,
             'estado'=>$oficina->estado,
-            'color' => $oficina->color,
             'created_at' => $oficina->created_at->toISOString()
         ];
     }

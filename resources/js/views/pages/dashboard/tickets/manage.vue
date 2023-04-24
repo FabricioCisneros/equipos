@@ -1,4 +1,4 @@
-<template>
+    <template>
     <div class="bg-white flex-1 relative">
         <loading :status="loading.form"/>
         <div class="flex relative">
@@ -6,106 +6,32 @@
                 <div class="w-full h:auto sm:h-14 border-b sm:px-3">
                     <div class="sm:flex sm:justify-between">
                         <div class="flex">
-                            <button class="btn p-4 rounded-none" type="button" @click="$router.push('/dashboard/tickets')">
+                            <button class="btn p-4 rounded-none" type="button" @click="$router.push('/dashboard/equipos')">
                                 <svg-vue class="h-5 w-5 text-gray-700" icon="font-awesome.chevron-left-regular"></svg-vue>
                             </button>
-                            <div v-on-clickaway="closeActionDropdown" class="block">
-                                <div class="relative inline-block text-left">
-                                    <button class="btn p-4 rounded-none" type="button" @click="toggleActionDropdown('agent')">
-                                        <svg-vue class="h-5 w-5 text-gray-700" icon="font-awesome.user-tag-regular"></svg-vue>
-                                    </button>
-                                    <div v-show="actions.agent" class="origin-top-right absolute left-0 mt-1 w-56 rounded-md shadow-lg z-20">
-                                        <div class="rounded-md bg-white shadow-xs">
-                                            <div class="py-1">
-                                                <template v-for="agent in agentList">
-                                                    <a
-                                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                                        href="#"
-                                                        role="menuitem"
-                                                        @click.prevent="action('agent', agent.id)"
-                                                    >
-                                                        {{ agent.name }}
-                                                    </a>
-                                                </template>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="relative inline-block text-left">
-                                    <button class="btn p-4 rounded-none" type="button" @click="toggleActionDropdown('department')">
-                                        <svg-vue class="h-5 w-5 text-gray-700" icon="font-awesome.users-class-regular"></svg-vue>
-                                    </button>
-                                    <div v-show="actions.department" class="origin-top-right absolute left-0 mt-1 w-56 rounded-md shadow-lg z-20">
-                                        <div class="rounded-md bg-white shadow-xs">
-                                            <div class="py-1">
-                                                <template v-for="department in departmentList">
-                                                    <a
-                                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                                        href="#"
-                                                        role="menuitem"
-                                                        @click.prevent="action('department', department.id)"
-                                                    >
-                                                        {{ department.name }}
-                                                    </a>
-                                                </template>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="relative inline-block text-left">
-                                    <button class="btn p-4 rounded-none" type="button" @click="toggleActionDropdown('label')">
-                                        <svg-vue class="h-5 w-5 text-gray-700" icon="font-awesome.tags-regular"></svg-vue>
-                                    </button>
-                                    <div v-show="actions.label" class="origin-top-right absolute left-0 mt-1 w-56 rounded-md shadow-lg z-20">
-                                        <div class="rounded-md bg-white shadow-xs">
-                                            <div class="py-1">
-                                                <template v-for="label in labelList">
-                                                    <a
-                                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                                        href="#"
-                                                        role="menuitem"
-                                                        @click.prevent="action('label', label.id)"
-                                                    >
-                                                        {{ label.name }}
-                                                    </a>
-                                                </template>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="relative inline-block text-left">
-                                    <button class="btn p-4 rounded-none" type="button" @click="toggleActionDropdown('priority')">
-                                        <svg-vue class="h-5 w-5 text-gray-700" icon="font-awesome.pennant-regular"></svg-vue>
-                                    </button>
-                                    <div v-show="actions.priority" class="origin-top-right absolute left-0 mt-1 w-56 rounded-md shadow-lg z-20">
-                                        <div class="rounded-md bg-white shadow-xs">
-                                            <div class="py-1">
-                                                <template v-for="priority in priorityList">
-                                                    <a
-                                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                                        href="#"
-                                                        role="menuitem"
-                                                        @click.prevent="action('priority', priority.id)"
-                                                    >
-                                                        {{ priority.name }}
-                                                    </a>
-                                                </template>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <button class="btn p-4 rounded-none" type="button" @click="deleteTicketModal = true">
                                 <svg-vue class="h-5 w-5 text-gray-700" icon="font-awesome.trash-alt-regular"></svg-vue>
                             </button>
+                            <template>
+                                <router-link 
+                                 :to="'/dashboard/Equipos/' + ticket.uuid + '/edit'" 
+                                 class="btn p-4 rounded-none">
+                                  <svg-vue class="h-5 w-5 text-gray-700" icon="font-awesome.edit-regular"></svg-vue>
+                                </router-link>
+                            </template>
                         </div>
                         <div class="flex items-center justify-end m-3 sm:m-0">
-                            <div class="text-2xl font-semibold">#{{ ticket.id }}</div>
-                            <div v-if="ticket.status" class="px-3">
-                                <div class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-blue-100 text-blue-800">
-                                    {{ ticket.status.name }}
-                                </div>
-                            </div>
+                            <template>
+                                <template v-if="ticket.numero_serie">
+                                    <div class="text-2xl font-semibold">{{ ticket.modelo }}</div>
+                                  <div class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-blue-100 text-blue-800">
+                                    N/S: {{ ticket.numero_serie }}
+                                  </div>
+                                </template>
+                                <template v-else>
+                                  <div class="text-2xl font-semibold">{{ ticket.modelo }}</div>
+                                </template>
+                              </template>
                         </div>
                     </div>
                 </div>
@@ -130,8 +56,8 @@
                                 <div class="flex items-center sm:float-right mt-3 sm:mt-0">
                                     <div class="text-sm sm:pr-2">{{ ticket.created_at | momentFormatDateTimeAgo }}</div>
                                     <button class="flex items-center btn btn-white p-2 ml-3 sm:ml-0" type="button" @click="replyForm = true">
-                                        <svg-vue class="h-4 w-4 mr-2" icon="font-awesome.reply-regular"></svg-vue>
-                                        {{ $t('Reply') }}
+                                        <svg-vue class="h-4 w-4 mr-2" icon="font-awesome.update-regular"></svg-vue>
+                                        {{ $t('Agregar detalle del equipo') }}
                                     </button>
                                 </div>
                             </div>
@@ -158,7 +84,7 @@
                                                 type="button"
                                                 @click="discardReply"
                                             >
-                                                {{ $t('Discard') }}
+                                                {{ $t('Cancelar') }}
                                             </button>
                                             <div class="flex">
                                                 <select
@@ -175,7 +101,7 @@
                                                     class="btn btn-green rounded-none"
                                                     type="submit"
                                                 >
-                                                    {{ $t('Send reply') }}
+                                                    {{ $t('agregar detalle o descripcion del equipo') }}
                                                 </button>
                                             </div>
                                         </div>
@@ -232,30 +158,12 @@
                                             <svg-vue class="h-full h-auto w-48 mb-6" icon="undraw.task-list"></svg-vue>
                                         </div>
                                         <div class="flex justify-center items-center">
-                                            <div class="w-full font-semibold text-2xl">{{ $t('This ticket has no conversations') }}</div>
+                                            <div class="w-full font-semibold text-2xl">{{ $t('Este ticket no cuenta con detalles') }}</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </template>
-                    </div>
-                </div>
-            </div>
-            <div :style="{flex: '0 0 240px', width: '240px'}" class="bg-gray-100 hidden lg:block border-l">
-                <div v-if="ticket.user" class="p-6">
-                    <div class="flex">
-                        <img
-                            :alt="$t('Avatar')"
-                            :src="ticket.user.avatar !== 'gravatar' ? ticket.user.avatar : ticket.user.gravatar"
-                            class="h-16 w-16"
-                        />
-                    </div>
-                    <div class="mt-2">
-                        <div class="text-gray-800 font-medium truncate">{{ ticket.user.name }}</div>
-                        <div class="flex items-center text-sm leading-5 text-gray-600">
-                            <svg-vue class="flex-shrink-0 mr-1.5 h-4 w-4" icon="font-awesome.envelope-solid"></svg-vue>
-                            <span class="truncate">{{ ticket.user.email }}</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -302,10 +210,10 @@
                                     </h3>
                                     <div class="mt-2">
                                         <p class="text-sm leading-5 text-gray-500">
-                                            {{ $t('Are you sure you want to delete the ticket?') }}
-                                            {{ $t('All data will be permanently removed') }}.
-                                            {{ $t('All related data will be deleted') }}.
-                                            {{ $t('This action cannot be undone') }}.
+                                            {{ $t('Estas seguro de eliminar este equipo?') }}
+                                            {{ $t('todos los datos seran eliminados permanentemente') }}.
+                                            {{ $t('se eliminaran todos los datos, relacionados con el') }}.
+                                            {{ $t('esta accion no se podra reveertir') }}.
                                         </p>
                                     </div>
                                 </div>
@@ -317,14 +225,14 @@
                                 type="button"
                                 @click="deleteTicket"
                             >
-                                {{ $t('Delete ticket') }}
+                                {{ $t('Eliminar un equipo') }}
                             </button>
                             <button
                                 class="btn btn-white mr-0 sm:mr-2"
                                 type="button"
                                 @click="deleteTicketModal = false"
                             >
-                                {{ $t('Cancel') }}
+                                {{ $t('cancelar') }}
                             </button>
                         </div>
                     </div>
@@ -348,7 +256,6 @@ export default {
     mounted() {
         this.getTicket();
         this.getFilters();
-        this.getCannedReplies();
     },
     data() {
         return {
@@ -361,7 +268,7 @@ export default {
             replyForm: false,
             uploadingFileProgress: 0,
             ticket: {
-                subject: null,
+                modelo: null,
                 created_at: null,
                 labels: [],
                 ticketReplies: [],
@@ -405,20 +312,10 @@ export default {
                 self.$router.push('/dashboard/tickets');
             });
         },
-        getCannedReplies() {
-            const self = this;
-            axios.get('api/dashboard/tickets/canned-replies').then(function (response) {
-                self.cannedReplyList = response.data;
-            })
-        },
         getFilters() {
             const self = this;
             axios.get('api/dashboard/tickets/filters').then(function (response) {
-                self.agentList = response.data.agents;
-                self.departmentList = response.data.departments;
-                self.labelList = response.data.labels;
                 self.statusList = response.data.statuses;
-                self.priorityList = response.data.priorities;
             });
         },
         discardReply() {
@@ -465,15 +362,6 @@ export default {
         removeAttachment(attachment) {
             this.ticketReply.attachments.splice(attachment, 1);
         },
-        removeLabel(index) {
-            const self = this;
-            const label = self.ticket.labels[index];
-            axios.post('api/dashboard/tickets/' + self.$route.params.uuid + '/remove-label', {
-                label: label.id,
-            }).then(function () {
-                self.ticket.labels.splice(index, 1);
-            });
-        },
         addReply() {
             const self = this;
             self.loading.reply = true;
@@ -491,53 +379,19 @@ export default {
                 self.loading.reply = false;
             });
         },
-        closeActionDropdown() {
-            this.actions.agent = false;
-            this.actions.department = false;
-            this.actions.label = false;
-            this.actions.priority = false;
-        },
-        toggleActionDropdown(action) {
-            if (action === 'agent') {
-                this.actions.agent = !this.actions.agent;
-                this.actions.department = false;
-                this.actions.label = false;
-                this.actions.priority = false;
-            }
-            if (action === 'department') {
-                this.actions.department = !this.actions.department;
-                this.actions.agent = false;
-                this.actions.label = false;
-                this.actions.priority = false;
-            }
-            if (action === 'label') {
-                this.actions.label = !this.actions.label;
-                this.actions.agent = false;
-                this.actions.department = false;
-                this.actions.priority = false;
-            }
-            if (action === 'priority') {
-                this.actions.priority = !this.actions.priority;
-                this.actions.agent = false;
-                this.actions.department = false;
-                this.actions.label = false;
-            }
-        },
         action(param, value) {
             const self = this;
             axios.post('api/dashboard/tickets/' + self.$route.params.uuid + '/quick-actions', {
                 action: param,
                 value: value,
             }).then(function (response) {
-                self.closeActionDropdown();
                 if (!response.data.access) {
-                    self.$router.push('/dashboard/tickets');
+                    self.$router.push('/dashboard/equipos');
                 } else {
                     self.ticket = response.data.ticket;
                     self.ticketReply.status_id = response.data.ticket.status_id;
                 }
             }).catch(function () {
-                self.closeActionDropdown();
             });
         },
         deleteTicket() {
@@ -548,7 +402,7 @@ export default {
                     text: self.$i18n.t('Data deleted successfully').toString(),
                     type: 'success'
                 });
-                self.$router.push('/dashboard/tickets');
+                self.$router.push('/dashboard/equipos');
             }).catch(function () {
                 self.deleteTicketModal = false;
             });

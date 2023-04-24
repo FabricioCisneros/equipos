@@ -17,40 +17,28 @@ class TicketFilter extends ModelFilter
 
     public function search($search): TicketFilter
     {
-        return $this->where('subject', 'LIKE', '%'.$search.'%')
-            ->orWhereHas('ticketReplies', function (Builder $query) use ($search) {
-                $query->where('body', 'LIKE', '%'.$search.'%');
-            });
+        return $this->where('numero_serie', 'LIKE', '%'.$search.'%');
     }
 
-    public function user($user): TicketFilter
+    public function modelo($modelo): TicketFilter
     {
-        return $this->whereHas('user', function (Builder $query) use ($user) {
-            $query->where('name', 'LIKE', '%'.$user.'%')
-                ->orWhere('email', 'LIKE', '%'.$user.'%');
-        });
+        return $this->where('modelo', 'LIKE', '%'.$modelo.'%');
     }
 
-    public function agents($agents): TicketFilter
+    public function numero_serie($numero_serie): TicketFilter
     {
-        return $this->whereIn('agent_id', $agents);
+        return $this->where('numero_serie', 'LIKE', '%'.$numero_serie.'%');
     }
 
-    public function departments($departments): TicketFilter
+
+    public function categorias($categoria): TicketFilter
     {
-        return $this->whereIn('department_id', $departments);
+        return $this->whereIn('categoria_id', $categoria);
     }
 
-    public function labels($labels): TicketFilter
+    public function oficinas($oficina): TicketFilter
     {
-        return $this->whereHas('labels', function (Builder $query) use ($labels) {
-            $query->whereIn('id', $labels);
-        });
-    }
-
-    public function status($status): TicketFilter
-    {
-        return $this->where('status_id', '=', $status);
+        return $this->whereIn('oficina_id', $oficina);
     }
 
     public function statuses($statuses): TicketFilter
@@ -58,8 +46,4 @@ class TicketFilter extends ModelFilter
         return $this->whereIn('status_id', $statuses);
     }
 
-    public function priorities($priorities): TicketFilter
-    {
-        return $this->whereIn('priority_id', $priorities);
-    }
 }

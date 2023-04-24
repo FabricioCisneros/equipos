@@ -25,6 +25,7 @@ use Illuminate\Support\Carbon;
  * @property int|null $user_id
  * @property int|null $agent_id
  * @property int|null $closed_by
+ * @property string  $numero_serie;
  * @property Carbon|null $closed_at
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
@@ -67,11 +68,8 @@ class Ticket extends Model
 
     protected $casts = [
         'status_id' => 'integer',
-        'priority_id' => 'integer',
-        'department_id' => 'integer',
-        'user_id' => 'integer',
-        'agent_id' => 'integer',
-        'closed_at' => 'datetime',
+        'oficina_id' => 'integer',
+        'categoria_id' => 'integer',
     ];
 
     public function getRouteKeyName(): string
@@ -84,39 +82,23 @@ class Ticket extends Model
         return $this->belongsTo(Status::class);
     }
 
-    public function priority(): BelongsTo
-    {
-        return $this->belongsTo(Priority::class);
-    }
+   public function oficina():BelongsTo
+   {
+    return $this->belongsTo(Oficina::class);
+   }
 
-    public function department(): BelongsTo
-    {
-        return $this->belongsTo(Department::class);
-    }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function agent(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function closedBy(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function ticketReplies(): HasMany
-    {
-        return $this->hasMany(TicketReply::class);
-    }
+   public function categoria():BelongsTo
+   {
+    return $this->belongsTo(Categoria::class);
+   }
 
     public function labels(): BelongsToMany
     {
         return $this->belongsToMany(Label::class, 'ticket_labels');
+    }
+    public function ticketReplies(): HasMany
+    {
+        return $this->hasMany(TicketReply::class);
     }
 
     public function verifyUser(User $user): bool

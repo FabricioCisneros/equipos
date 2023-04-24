@@ -4,6 +4,8 @@ import '@/plugins/ladda';
 import '@/plugins/axios';
 import "@/components";
 
+import DatePicker from 'vue-datepicker';
+
 import Vue from "vue";
 import Vuex from 'vuex';
 import Meta from 'vue-meta';
@@ -19,12 +21,18 @@ import App from "@/views/app";
 import i18n from "@/language";
 import router from "@/views/router";
 
+import datePicker  from "vue-bootstrap-datetimepicker";
+
+import 'bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css';
+import 'bootstrap-datepicker';
+
 Vue.use(Vuex);
 Vue.use(Meta);
 Vue.use(SvgVue);
 Vue.use(Notifications);
 Vue.use(TextareaAutosize);
 Vue.use(vueFilterPrettyBytes);
+Vue.use(datePicker);
 Vue.component('VueElementLoading', VueElementLoading);
 if (window.app.recaptcha_enabled) {
     Vue.use(VueReCaptcha, {siteKey: window.app.recaptcha_public});

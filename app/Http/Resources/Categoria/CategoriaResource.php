@@ -14,6 +14,11 @@ class CategoriaResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        $categoria = $this;
+        return [
+            'id' => $categoria->id,
+            'name' => $categoria->name,
+            'created_at' => $categoria->created_at->toISOString()
+        ];
     }
 }

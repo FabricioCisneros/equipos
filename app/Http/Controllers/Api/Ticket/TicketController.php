@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Ticket;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\Ticket\UpdateRequest;
 use App\Http\Requests\Ticket\StoreRequest;
 use App\Http\Requests\Ticket\TicketReplyRequest;
 use App\Http\Resources\Department\DepartmentSelectResource;
@@ -59,6 +60,7 @@ class TicketController extends Controller
         ]);
     }
 
+  
     /**
      * Store a newly created resource in storage.
      *
@@ -98,6 +100,9 @@ class TicketController extends Controller
         return response()->json(['message' => __('An error occurred while saving data')], 500);
     }
 
+    public function update(UpdateRequest $request, Ticket $ticket):JsonResponse{
+        
+    }
     /**
      * Display the specified resource.
      *

@@ -18,7 +18,7 @@ class CreateTicketRepliesTable extends Migration
                 $table->id();
                 $table->foreignId('ticket_id')->nullable()->constrained('tickets')->nullOnDelete();
                 $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
-                $table->longText('body');
+                $table->longText('descripcion');
                 $table->timestamps();
             });
         }
