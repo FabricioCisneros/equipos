@@ -36,14 +36,19 @@
             v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.StatusController']"
             :label="$t('Statuses')" :mobile="mobile" icon="font-awesome.tasks-regular"
             to="/dashboard/admin/statuses"></menu-item>
+
+        <menu-item
+            v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.SettingController']"
+            :label="$t('Oficinas')" :mobile="mobile" icon="font-awesome.apartment-regular"
+            to="/dashboard/admin/oficinas"></menu-item>
         <menu-item
             v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.StatusController']"
             :label="$t('Turnos')" :mobile="mobile" icon="font-awesome.clock-regular"
             to="/dashboard/admin/turnos"></menu-item>
         <menu-item
-            v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.SettingController']"
-            :label="$t('Oficinas')" :mobile="mobile" icon="font-awesome.apartment-regular"
-            to="/dashboard/admin/oficinas"></menu-item>
+            v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.StatusController']"
+            :label="$t('Empleados')" :mobile="mobile" icon="font-awesome.clock-regular"
+            to="/dashboard/admin/empleados"></menu-item>
         <menu-item
             v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.SettingController']"
             :label="$t('Categorias')" :mobile="mobile" icon="font-awesome.tags-regular"

@@ -75,6 +75,11 @@ import AccountPage from "@/views/pages/account/account";
 import DashboardNotFoundPage from "@/views/pages/dashboard/error/not-found";
 import PageNotFoundPage from "@/views/pages/error/not-found";
 
+
+import AdminDashboardTurnosList from "@/views/pages/dashboard/admin/turnos/list";
+import AdminDashboardTurnosNew from "@/views/pages/dashboard/admin/turnos/new";
+import AdminDashboardTurnosEdit from "@/views/pages/dashboard/admin/turnos/Edit";
+
 Vue.use(VueRouter);
 
 let routes = [
@@ -126,6 +131,10 @@ let routes = [
             {path: 'admin/oficinas', component: AdminDashboardOficinasList, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.Admin.LabelController'}},
             {path: 'admin/oficinas/new', component: AdminDashboardOficinasNew, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.Admin.LabelController'}},
             {path: 'admin/oficinas/:id/edit', component: AdminDashboardOficinasEdit, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.Admin.LabelController'}},
+            
+            {path: 'admin/turnos', component: AdminDashboardTurnosList, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.Admin.LabelController'}},
+            {path: 'admin/turnos/new', component: AdminDashboardTurnosNew, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.Admin.LabelController'}},
+            {path: 'admin/turnos/:id/edit', component: AdminDashboardTurnosEdit, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.Admin.LabelController'}},
 
             {path: 'admin/categorias', component: AdminDashboardCategoriasList, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.Admin.LabelController'}},
             {path: 'admin/categorias/new', component: AdminDashboardCategoriasNew, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.Admin.LabelController'}},
@@ -191,7 +200,7 @@ router.beforeResolve((to, from, next) => {
                     next('/auth/login');
                 } else {
                     if (to.meta.dashboard_access && !response.data.dashboard_access) {
-                        next('/tickets');
+                        next('/dashboard/home');
                     } else {
                         response.data.access ? next() : to.meta.controller ? next('/dashboard/home') : next('/auth/login');
                     }

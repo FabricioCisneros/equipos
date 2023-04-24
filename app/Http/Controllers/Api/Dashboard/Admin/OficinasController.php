@@ -41,7 +41,7 @@ class OficinasController extends Controller
         $oficina->name = $request->get('name');
         $oficina->estado=$request->get('estado');
         if ($oficina->save()) {
-            return response()->json(['message' => 'Data updated correctly', 'label' => new OficinaResource($oficina)]);
+            return response()->json(['message' => 'Datos actualizados con exito', 'label' => new OficinaResource($oficina)]);
         }
         return response()->json(['message' => __('An error occurred while saving data')], 500);
     }

@@ -18,6 +18,7 @@ use App\Http\Controllers\Api\Language\LanguageController as LanguageLanguageCont
 use App\Http\Controllers\Api\Ticket\TicketController as UserTicketController;
 use App\Http\Controllers\Api\Dashboard\Admin\OficinasController as DashboardAdminOficinasController;
 use App\Http\Controllers\Api\Dashboard\Admin\CategoriasController as DashboardAdminCategoriasController;
+use App\Http\Controllers\Api\Dashboard\Admin\TurnoController as DashboardAdminTurnoController;
 
 Route::group(['prefix' => 'lang'], static function () {
     Route::get('/', [LanguageLanguageController::class, 'list'])->name('language.list');
@@ -75,6 +76,8 @@ Route::group(['prefix' => 'dashboard'], static function () {
         Route::apiResource('labels', DashboardAdminLabelController::class);
 
         Route::apiResource('oficinas',DashboardAdminOficinasController::class);
+
+        Route::apiResource('turnos', DashboardAdminTurnoController::class);
 
         Route::apiResource('categorias',DashboardAdminCategoriasController::class);
 
