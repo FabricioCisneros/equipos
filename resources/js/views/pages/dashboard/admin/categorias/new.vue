@@ -36,7 +36,7 @@
                         <div class="inline-flex">
                             <router-link
                                 class="btn btn-secondary shadow-sm rounded-md mr-4"
-                                to="/dashboard/admin/categoria"
+                                to="/dashboard/admin/categorias"
                             >
                                 {{ $t('Cancelar') }}
                             </router-link>

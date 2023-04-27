@@ -3,7 +3,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 px-5">
             <div class="md:flex md:items-center md:justify-between">
                 <div class="flex-1 min-w-0">
-                    <h1 class="py-0.5 text-2xl font-semibold text-gray-900">{{ $t('Estatus') }}</h1>
+                    <h1 class="py-0.5 text-2xl font-semibold text-gray-900">{{ $t('estado de los equipos') }}</h1>
                 </div>
             </div>
         </div>

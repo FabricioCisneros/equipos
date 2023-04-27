@@ -74,9 +74,9 @@ export default {
                     self.$router.push(intendedUrl);
                 } else {
                     if (response.data.user.role.dashboard_access) {
-                        self.$router.push('/dashboard/home');
+                        self.$router.push('/dashboard/equipos');
                     } else {
-                        self.$router.push('/tickets/list');
+                        self.$router.push('/dashboard/equipos');
                     }
                 }
             }).catch(function () {

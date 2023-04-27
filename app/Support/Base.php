@@ -46,12 +46,27 @@ class Base
         switch ($icon) {
             case null:
             case 'default':
-                return asset('images/default/background.jpg');
+                return asset('images/default/images/default/background.jpg');
             default:
                 if (Storage::disk('public')->exists($icon)) {
                     return url(Storage::disk('public')->url($icon));
                 }
                 return asset('images/default/background.jpg');
+        }
+    }
+
+    public static function userProfile(): string
+    {
+        $icon = Setting::get('app_userProfile');
+        switch ($icon) {
+            case null:
+            case 'default':
+                return asset('images/default/images/default/user.png');
+            default:
+                if (Storage::disk('public')->exists($icon)) {
+                    return url(Storage::disk('public')->url($icon));
+                }
+                return asset('images/default/user.png');
         }
     }
 }

@@ -24,7 +24,7 @@ class AppearanceUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'icon' => ['image', 'max:1000', 'dimensions:ratio=1/1'],
+            'icon' => ['image', 'max:1000', ],
             'background' => ['image', 'max:2000'],
         ];
     }
@@ -39,8 +39,7 @@ class AppearanceUpdateRequest extends FormRequest
         return [
             'icon.image' => __('The file has to be an image', ['attribute' => __('icon')]),
             'icon.max' => __('The :attribute may not be greater than :max kilobytes', ['attribute' => __('icon'), 'max' => 1000]),
-            'icon.dimensions' => __('The :attribute has invalid image dimensions', ['attribute' => __('icon')]),
-
+            
             'background.image' => __('The file has to be an image', ['attribute' => __('background')]),
             'background.max' => __('The :attribute may not be greater than :max kilobytes', ['attribute' => __('background'), 'max' => 2000]),
             'background.dimensions' => __('The :attribute has invalid image dimensions', ['attribute' => __('background')])

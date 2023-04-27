@@ -19,6 +19,8 @@ use App\Http\Controllers\Api\Ticket\TicketController as UserTicketController;
 use App\Http\Controllers\Api\Dashboard\Admin\OficinasController as DashboardAdminOficinasController;
 use App\Http\Controllers\Api\Dashboard\Admin\CategoriasController as DashboardAdminCategoriasController;
 use App\Http\Controllers\Api\Dashboard\Admin\TurnoController as DashboardAdminTurnoController;
+use App\Http\Controllers\Api\Dashboard\Admin\EmpleadosController as DashboardAdminEmpleadosController;
+
 
 Route::group(['prefix' => 'lang'], static function () {
     Route::get('/', [LanguageLanguageController::class, 'list'])->name('language.list');
@@ -78,7 +80,11 @@ Route::group(['prefix' => 'dashboard'], static function () {
         Route::apiResource('oficinas',DashboardAdminOficinasController::class);
 
         Route::apiResource('turnos', DashboardAdminTurnoController::class);
+        
 
+        Route::get('empleados/filters',[DashboardAdminEmpleadosController::class, 'filters'])->name('empleados.filters');
+        Route::apiResource('empleados',DashboardAdminEmpleadosController::class);
+        
         Route::apiResource('categorias',DashboardAdminCategoriasController::class);
 
         Route::apiResource('statuses', DashboardAdminStatusController::class)->except(['store', 'delete']);

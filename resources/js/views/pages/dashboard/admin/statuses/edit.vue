@@ -4,7 +4,7 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 px-5">
                 <div class="md:flex md:items-center md:justify-between">
                     <div class="flex-1 min-w-0">
-                        <h1 class="py-0.5 text-2xl font-semibold text-gray-900">{{ $t('Editar Estatus') }}</h1>
+                        <h1 class="py-0.5 text-2xl font-semibold text-gray-900">{{ $t('Editar Estado') }}</h1>
                     </div>
                 </div>
             </div>
@@ -13,18 +13,18 @@
                     <loading :status="loading"/>
                     <div class="bg-white md:grid md:grid-cols-3 md:gap-6 px-4 py-5 sm:p-6">
                         <div class="md:col-span-1">
-                            <h3 class="text-lg font-medium leading-6 text-gray-900">{{ $t('Detalles del estatus') }}</h3>
+                            <h3 class="text-lg font-medium leading-6 text-gray-900">{{ $t('Detalles del Estado') }}</h3>
                          
                         </div>
                         <div class="mt-5 md:mt-0 md:col-span-2">
                             <div class="grid grid-cols-3 gap-6">
                                 <div class="col-span-3">
-                                    <label class="block text-sm font-medium leading-5 text-gray-700" for="name">{{ $t('Nombre del estatus') }}</label>
+                                    <label class="block text-sm font-medium leading-5 text-gray-700" for="name">{{ $t('Nombre del Estado') }}</label>
                                     <div class="mt-1 relative rounded-md shadow-sm">
                                         <input
                                             id="name"
                                             v-model="status.name"
-                                            :placeholder="$t('Nombre del estatus')"
+                                            :placeholder="$t('Nombre del estado')"
                                             class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                                             required
                                         >

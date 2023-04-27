@@ -39,7 +39,7 @@
                     <div class="bg-gray-100 text-right px-4 py-3 sm:px-6">
                         <span class="inline-flex">
                             <router-link class="btn btn-secondary shadow-sm rounded-md mr-4"
-                                to="/dashboard/admin/categoria">
+                                to="/dashboard/admin/categorias">
                                 {{ $t('cancelar') }}
                             </router-link>
                             <button class="btn btn-green shadow-sm rounded-md" type="submit">

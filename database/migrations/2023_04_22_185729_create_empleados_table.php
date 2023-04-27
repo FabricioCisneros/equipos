@@ -15,6 +15,12 @@ class CreateEmpleadosTable extends Migration
     {
         Schema::create('empleados', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('apellidos');
+            $table->string('email')->nullable();
+            $table->string('telefono')->nullable();
+            $table->foreignId('oficina_id')->nullable()->constrained('oficinas')->nullOnDelete();
+            $table->foreignId('turno_id')->constrained('turnos');
             $table->timestamps();
         });
     }
@@ -26,6 +32,9 @@ class CreateEmpleadosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('empleados');
+        Schema::table('empleados', function (Blueprint $table) {
+            $table->dropForeign(['oficina_id']);
+            $table->dropForeign(['turno_id']);
+        });
     }
 }

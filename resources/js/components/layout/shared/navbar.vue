@@ -48,19 +48,19 @@
                                                 v-if="$store.state.user.role.dashboard_access"
                                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150"
                                                 role="menuitem"
-                                                to="/dashboard/home"
+                                                to="/dashboard/equipos"
                                                 @click.native="dropdownOpen = false"
                                             >
-                                                {{ $t('Dashboard') }}
+                                                {{ $t('home') }}
                                             </router-link>
-                                            <router-link
+                                            <!-- <router-link
                                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150"
                                                 role="menuitem"
                                                 to="/tickets/list"
                                                 @click.native="dropdownOpen = false"
                                             >
                                                 {{ $t('My tickets') }}
-                                            </router-link>
+                                            </router-link> -->
                                             <router-link
                                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150"
                                                 role="menuitem"

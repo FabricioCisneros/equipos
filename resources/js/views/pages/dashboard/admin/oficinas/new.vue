@@ -49,7 +49,7 @@
                         <div class="inline-flex">
                             <router-link
                                 class="btn btn-secondary shadow-sm rounded-md mr-4"
-                                to="/dashboard/admin/labels"
+                                to="/dashboard/admin/oficinas"
                             >
                                 {{ $t('Cancelar') }}
                             </router-link>

@@ -3,8 +3,8 @@
         <div class="my-3 mx-4 uppercase text-gray-300 text-xs">
             {{ $t('General') }}
         </div>
-        <menu-item :label="$t('Dashboard')" :mobile="mobile" icon="font-awesome.tachometer-alt-regular"
-            to="/dashboard/home"></menu-item>
+        <!-- <menu-item :label="$t('Dashboard')" :mobile="mobile" icon="font-awesome.tachometer-alt-regular"
+            to="/dashboard/home"></menu-item> -->
         <!-- <menu-item
             v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.TicketController']"
             :label="$t('Tickets')" :mobile="mobile" icon="font-awesome.inbox-regular" to="/dashboard/tickets"></menu-item> -->
@@ -34,11 +34,11 @@
             to="/dashboard/admin/labels"></menu-item> -->
         <menu-item
             v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.StatusController']"
-            :label="$t('Statuses')" :mobile="mobile" icon="font-awesome.tasks-regular"
+            :label="$t('Estados del equipo')" :mobile="mobile" icon="font-awesome.tasks-regular"
             to="/dashboard/admin/statuses"></menu-item>
 
         <menu-item
-            v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.SettingController']"
+            v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.StatusController']"
             :label="$t('Oficinas')" :mobile="mobile" icon="font-awesome.apartment-regular"
             to="/dashboard/admin/oficinas"></menu-item>
         <menu-item
@@ -47,10 +47,10 @@
             to="/dashboard/admin/turnos"></menu-item>
         <menu-item
             v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.StatusController']"
-            :label="$t('Empleados')" :mobile="mobile" icon="font-awesome.clock-regular"
+            :label="$t('Empleados')" :mobile="mobile" icon="font-awesome.directory-regular"
             to="/dashboard/admin/empleados"></menu-item>
         <menu-item
-            v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.SettingController']"
+            v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.StatusController']"
             :label="$t('Categorias')" :mobile="mobile" icon="font-awesome.tags-regular"
             to="/dashboard/admin/categorias"></menu-item>
         <!-- <menu-item
@@ -69,10 +69,10 @@
             :label="$t('Settings')" :mobile="mobile" icon="font-awesome.cog-regular"
             to="/dashboard/admin/settings"></menu-item>
 
-        <menu-item
+        <!-- <menu-item
             v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.Admin.LanguageController']"
             :label="$t('Translations')" :mobile="mobile" icon="font-awesome.language-regular"
-            to="/dashboard/admin/languages"></menu-item>
+            to="/dashboard/admin/languages"></menu-item> -->
     </div>
 </template>
 

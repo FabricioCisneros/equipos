@@ -96,9 +96,9 @@ export default {
                 })
                 self.$store.commit('login', response.data);
                 if (response.data.user.role.dashboard_access) {
-                    self.$router.push('/dashboard/home');
+                    self.$router.push('/dashboard/equipos');
                 } else {
-                    self.$router.push('/tickets/list');
+                    self.$router.push('/dashboard/equipos');
                 }
             }).catch(function () {
                 self.user.password = null;

@@ -80,6 +80,11 @@ import AdminDashboardTurnosList from "@/views/pages/dashboard/admin/turnos/list"
 import AdminDashboardTurnosNew from "@/views/pages/dashboard/admin/turnos/new";
 import AdminDashboardTurnosEdit from "@/views/pages/dashboard/admin/turnos/Edit";
 
+
+import AdminDashboardEmpleadosList from "@/views/pages/dashboard/admin/empleados/list";
+import AdminDashboardEmpleadosNew from "@/views/pages/dashboard/admin/empleados/new";
+import AdminDashboardEmpleadosEdit from "@/views/pages/dashboard/admin/empleados/edit"
+
 Vue.use(VueRouter);
 
 let routes = [
@@ -96,7 +101,7 @@ let routes = [
         ]
     },
     {
-        path: '/tickets', component: HelpdeskLayout, redirect: '/tickets/list',
+        path: '/tickets', component: HelpdeskLayout, redirect: '/dashboard/equipos/',
         children: [
             {path: 'list', component: HelpdeskTicketsListPage, meta: {middleware: 'auth'}},
             {path: 'new', component: HelpdeskTicketsNewPage, meta: {middleware: 'auth'}},
@@ -135,7 +140,12 @@ let routes = [
             {path: 'admin/turnos', component: AdminDashboardTurnosList, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.Admin.LabelController'}},
             {path: 'admin/turnos/new', component: AdminDashboardTurnosNew, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.Admin.LabelController'}},
             {path: 'admin/turnos/:id/edit', component: AdminDashboardTurnosEdit, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.Admin.LabelController'}},
+            
+            {path: 'admin/empleados', component: AdminDashboardEmpleadosList, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.Admin.LabelController'}},
+            {path: 'admin/empleados/new', component: AdminDashboardEmpleadosNew, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.Admin.LabelController'}},
+            {path: 'admin/empleados/:id/edit', component: AdminDashboardEmpleadosEdit, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.Admin.LabelController'}},
 
+            
             {path: 'admin/categorias', component: AdminDashboardCategoriasList, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.Admin.LabelController'}},
             {path: 'admin/categorias/new', component: AdminDashboardCategoriasNew, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.Admin.LabelController'}},
             {path: 'admin/categorias/:id/edit', component: AdminDashboardCategoriasEdit, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.Admin.LabelController'}},

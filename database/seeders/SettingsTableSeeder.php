@@ -26,7 +26,7 @@ class SettingsTableSeeder extends Seeder
         if (Setting::where('key', 'app_name')->count() === 0) {
             $setting = new Setting();
             $setting->key = 'app_name';
-            $setting->value = env('APP_NAME', 'Laradesk');
+            $setting->value = env('APP_NAME', 'InventariosAL');
             $setting->is_env = true;
             $setting->save();
         }
@@ -41,7 +41,7 @@ class SettingsTableSeeder extends Seeder
         if (Setting::where('key', 'meta_home_title')->count() === 0) {
             $setting = new Setting();
             $setting->key = 'meta_home_title';
-            $setting->value = env('APP_NAME', 'Laradesk').' - Helpdesk ticketing system';
+            $setting->value = env('APP_NAME', 'InventariosAL').' Sistema de inventarios de equipos Activo Liquido';
             $setting->save();
         }
         if (Setting::where('key', 'meta_keywords')->count() === 0) {
