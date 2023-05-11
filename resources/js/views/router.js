@@ -83,7 +83,11 @@ import AdminDashboardTurnosEdit from "@/views/pages/dashboard/admin/turnos/Edit"
 
 import AdminDashboardEmpleadosList from "@/views/pages/dashboard/admin/empleados/list";
 import AdminDashboardEmpleadosNew from "@/views/pages/dashboard/admin/empleados/new";
-import AdminDashboardEmpleadosEdit from "@/views/pages/dashboard/admin/empleados/edit"
+import AdminDashboardEmpleadosEdit from "@/views/pages/dashboard/admin/empleados/edit";
+
+import DashboardDirectorioList from "@/views/pages/dashboard/directorios/list";
+import DashboardDirectorioNew from "@/views/pages/dashboard/directorios/new";
+import DashboardDirectorioEdit from "@/views/pages/dashboard/directorios/edit";
 
 Vue.use(VueRouter);
 
@@ -119,8 +123,11 @@ let routes = [
             {path: 'Equipos/:uuid/edit', component: DashboardTicketsEdit, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.TicketController'}},
 
             
+            {path: 'Directorio-de-equipos', component:DashboardDirectorioList, meta: {middleware:'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.TicketController'}},
+            {path: 'Directorio-de-equipos/new', component:DashboardDirectorioNew, meta: {middleware:'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.TicketController'}},
+            {path: 'Directorio-de-equipos/edit', component:DashboardDirectorioEdit, meta: {middleware:'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.TicketController'}},
 
-            
+
             {path: 'canned-replies', component: DashboardCannedRepliesList, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.CannedReplyController'}},
             {path: 'canned-replies/new', component: DashboardCannedRepliesNew, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.CannedReplyController'}},
             {path: 'canned-replies/:id/edit', component: DashboardCannedRepliesEdit, meta: {middleware: 'auth', dashboard_access: true, controller: 'App.Http.Controllers.Api.Dashboard.CannedReplyController'}},

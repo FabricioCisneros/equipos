@@ -63,7 +63,7 @@
                                     <option value="apellidos">{{ $t('apellido') }}</option>
                                     <option value="email">{{ $t('email') }}</option>
                                     <option value="telefono">{{ $t('telefono') }}</option>
-                                    <option value="oficina">{{ $t('oficina') }}</option>
+                                    <option value="oficinas">{{ $t('oficina') }}</option>
                                     <option value="turno">{{ $t('turno') }}</option>
                                     <option value="created_at">{{ $t('fecha de creacion') }}</option>
                                 </select>
@@ -206,7 +206,7 @@ export default {
                 totalPages: 0
             },
             empleadosList:[],
-            turnoList:[]
+            turnoList:[],
         }
     },
     mounted() {

@@ -21,7 +21,8 @@ class EmpleadoResource extends JsonResource
             'apellidos'=>$empleado->apellidos,
             'email'=>$empleado->email,
             'telefono'=>$empleado->telefono,
-            'oficina_id'=>$empleado->oficina_id
+            'oficina_id'=>$empleado->oficina_id,
+            'turno_id'=>$empleado->turno_id,
         ];
     }
 }

@@ -21,6 +21,8 @@ use App\Http\Controllers\Api\Dashboard\Admin\CategoriasController as DashboardAd
 use App\Http\Controllers\Api\Dashboard\Admin\TurnoController as DashboardAdminTurnoController;
 use App\Http\Controllers\Api\Dashboard\Admin\EmpleadosController as DashboardAdminEmpleadosController;
 
+use App\Http\Controllers\Api\Dashboard\Admin\DirectorioController as DashboardAdminDirectorioController;
+
 
 Route::group(['prefix' => 'lang'], static function () {
     Route::get('/', [LanguageLanguageController::class, 'list'])->name('language.list');
@@ -81,6 +83,12 @@ Route::group(['prefix' => 'dashboard'], static function () {
 
         Route::apiResource('turnos', DashboardAdminTurnoController::class);
         
+        Route::get('directorio/datosEquipo', [DashboardAdminDirectorioController::class, 'datosEquipo'])->name('directorio.datosEquipo');
+        Route::get('directorio/getTickets', [DashboardAdminDirectorioController::class, 'getTickets'])->name('directorio.getTickets');
+        Route::get('directorio/updateOficinasList/{selectedState}',[DashboardAdminDirectorioController::class, 'updateOficinasList'])->name('directorio.updateOficinasList');
+        Route::get('directorio/datosEmpleado',[DashboardAdminDirectorioController::class, 'datosEmpleado'])->name('directorio.datosEmpleado');
+        Route::get('directorio/getEmpleados',[DashboardAdminDirectorioController::class, 'getEmpleados'])->name('directorio.getEmpleados');
+        Route::apiResource('directorio',DashboardAdminDirectorioController::class);
 
         Route::get('empleados/filters',[DashboardAdminEmpleadosController::class, 'filters'])->name('empleados.filters');
         Route::apiResource('empleados',DashboardAdminEmpleadosController::class);

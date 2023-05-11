@@ -16,15 +16,16 @@ import VueElementLoading from 'vue-element-loading';
 import TextareaAutosize from 'vue-textarea-autosize';
 import vueFilterPrettyBytes from 'vue-filter-pretty-bytes';
 
+
+
+
 import store from '@/store';
 import App from "@/views/app";
 import i18n from "@/language";
 import router from "@/views/router";
 
-import datePicker  from "vue-bootstrap-datetimepicker";
-
-import 'bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css';
-import 'bootstrap-datepicker';
+import flatpickr from 'flatpickr';
+import VueFlatpickr from 'vue-flatpickr-component';
 
 Vue.use(Vuex);
 Vue.use(Meta);
@@ -32,11 +33,16 @@ Vue.use(SvgVue);
 Vue.use(Notifications);
 Vue.use(TextareaAutosize);
 Vue.use(vueFilterPrettyBytes);
-Vue.use(datePicker);
+Vue.component('date-picker', DatePicker);
 Vue.component('VueElementLoading', VueElementLoading);
 if (window.app.recaptcha_enabled) {
     Vue.use(VueReCaptcha, {siteKey: window.app.recaptcha_public});
 }
+
+Vue.use(VueFlatpickr, {
+    // Opciones de flatpickr
+    enableTime: true,
+  });
 
 Vue.config.productionTip = false;
 

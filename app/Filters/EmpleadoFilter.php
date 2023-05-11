@@ -13,7 +13,7 @@ class EmpleadoFilter extends ModelFilter
     * @var array
     */
     public $relations = [];
-    public function search($search): TicketFilter
+    public function search($search): EmpleadoFilter
     {
         return $this->where('name', 'LIKE', '%'.$search.'%')
         ->orWhere('email', 'LIKE', '%'.$search.'%')
@@ -21,5 +21,22 @@ class EmpleadoFilter extends ModelFilter
         ->orWhere('telefono', 'LIKE', '%'.$search.'%');
     }
 
-
+    public function nombre($nombre):EmpleadoFilter
+    {
+        return $this->where('name','LIKE','%'.$nombre.'%')
+        ->orWhere('apellidos', 'LIKE', '%'.$nombre.'%');
+    }
+    
+    public function correo($correo):EmpleadoFilter
+    {
+        return $this->where('email','LIKE','%',$correo.'%');
+    }
+    public function turno($turno):EmpleadoFilter
+    {
+        return $this->where('turno_id', $turno);
+    }
+    public function oficinas($oficina): EmpleadoFilter
+    {
+        return $this->whereIn('oficina_id', $oficina);
+    }
 }

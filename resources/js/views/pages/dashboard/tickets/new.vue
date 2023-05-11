@@ -190,6 +190,7 @@ export default {
             const self = this;
             self.loading.form = true;
             console.log(self.ticket);
+            
              axios.post('api/dashboard/tickets', self.ticket).then(function (response) {
                  self.$notify({
                      title: self.$i18n.t('Completado').toString(),

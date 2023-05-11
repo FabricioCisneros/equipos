@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Api\Dashboard\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Admin\Empleado\StoreRequest;
-use App\Http\Requests\Dashboard\Admin\Empleado\UpdateRequest as AppUpdateRequest;
-use App\Http\Resources\Dashboard\Admin\Empleado\UpdateRequest;
+use App\Http\Requests\Dashboard\Admin\Empleado\UpdateRequest;
 use App\Http\Resources\Empleado\EmpleadoResource;
 use App\Http\Resources\Empleado\EmpleadoListResource;
 use App\Http\Resources\Oficina\OficinaResource;
@@ -64,19 +63,21 @@ class EmpleadosController extends Controller
         return response()->json(new EmpleadoResource($empleado));
     }
 
-    public function update(AppUpdateRequest $request, Empleado $empleado):JsonResponse
+    public function update(UpdateRequest $request, Empleado $empleado):JsonResponse
     {
         $request->validated();
-        $empleado=$request->get('name');
-        $empleado=$request->get('apellidos');
-        $empleado=$request->get(email);
-        $empleado=$request->get('telefono');
-        $empleado=$request->get('oficina_id');
+        $empleado->name  =$request->get('name');
+        $empleado->apellidos=$request->get('apellidos');
+        $empleado->email =$request->get('email');
+        $empleado->telefono =$request->get('telefono');
+        $empleado->oficina_id =$request->get('oficina_id');
+        $empleado->turno_id =$request->get('turno_id');
         
         if($empleado->save()){
-            response()->json(['message'=>'datos actualizados', 'user'=>new EmpleadoResource($empleado)]);
+            return response()->json(['message'=>'datos actualizados', 'user'=>new EmpleadoResource($empleado)]);
         }
-        return response()->json(['message' => __('An error occurred while saving data')], 500);
+            return response()->json(['message' => __('An error occurred while saving data')], 500);
+        
     }
 
     public function filters(): JsonResponse

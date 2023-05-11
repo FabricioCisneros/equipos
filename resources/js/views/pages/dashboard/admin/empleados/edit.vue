@@ -1,10 +1,10 @@
 <template>
     <main class="flex-1 relative overflow-y-auto py-6 focus:outline-none" tabindex="0">
-        <form @submit.prevent="saveTicket">
+        <form @submit.prevent="saveEmpleado">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 px-5">
                 <div class="md:flex md:items-center md:justify-between">
                     <div class="flex-1 min-w-0">
-                        <h1 class="py-0.5 text-2xl font-semibold text-gray-900">{{ $t('Agregar equipo') }}</h1>
+                        <h1 class="py-0.5 text-2xl font-semibold text-gray-900">{{ $t('Agregar nuevo empleado') }}</h1>
                     </div>
                 </div>
             </div>
@@ -13,76 +13,79 @@
                     <loading :status="loading.form" />
                     <div class="bg-white md:grid md:grid-cols-3 md:gap-6 px-4 py-5 sm:p-6">
                         <div class="md:col-span-1">
-                            <h3 class="text-lg font-medium leading-6 text-gray-900">{{ $t('Detalles del equipo') }}</h3>
+                            <h3 class="text-lg font-medium leading-6 text-gray-900">{{ $t('Detalles del empleado') }}</h3>
                         </div>
                         <div class="mt-5 md:mt-0 md:col-span-2">
                             <div class="grid grid-cols-3 gap-6">
 
-
-
-                                <!-- INPUT DE OFICINA EN LA QUE PERTENECE EL EQUIPO -->
                                 <div class="col-span-3">
-                                    <label class="block text-sm font-medium leading-5 text-gray-700" for="department">{{
-                                        $t('Oficina') }}</label>
+                                    <label class="block text-sm font-medium leading-5 text-gray-700" for="name">{{
+                                        $t('Nombre') }}</label>
                                     <div class="mt-1 relative rounded-md shadow-sm">
-                                        <input-select id="department" v-model="ticket.oficina_id" :options="oficinaList"
-                                            option-label="name"  />
-                                    </div>
-                                </div>
-                                <!-- FIN DEL BLOQUE -->
-
-
-
-                                <!-- INPUT DEL MODELO -->
-                                <div class="col-span-3">
-                                    <label class="block text-sm font-medium leading-5 text-gray-700" for="modelo">{{
-                                        $t('Modelo') }}</label>
-                                    <div class="mt-1 relative rounded-md shadow-sm">
-                                        <input id="modelo" v-model="ticket.modelo"
-                                            :placeholder="$t('modelo del equipo incluyendo marca')"
+                                        <input id="name" v-model="empleado.name"
+                                            :placeholder="$t('nombre del empleado')"
                                             class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                                             required>
                                     </div>
                                 </div>
-                                <!-- FIN DEL BLOQEU -->
 
-                                <!-- INPUT DEL NUMERO DE SERIE -->
                                 <div class="col-span-3">
-                                    <label class="block text-sm font-medium leading-5 text-gray-700" for="numero_serie">{{
-                                        $t('Numero de serie del equipo') }}</label>
+                                    <label class="block text-sm font-medium leading-5 text-gray-700" for="apellidos">{{
+                                        $t('Apellidos') }}</label>
                                     <div class="mt-1 relative rounded-md shadow-sm">
-                                        <input id="numero_serie" v-model="ticket.numero_serie"
-                                            :placeholder="$t('Numero de serie o codigo del equipo')"
+                                        <input id="apellidos" v-model="empleado.apellidos"
+                                            :placeholder="$t('Apellidos del empleado')"
+                                            class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                            required>
+                                    </div>
+                                </div>
+
+                                <div class="col-span-3">
+                                    <label class="block text-sm font-medium leading-5 text-gray-700" for="email">{{
+                                        $t('email') }}</label>
+                                    <div class="mt-1 relative rounded-md shadow-sm">
+                                        <input id="email" v-model="empleado.email"
+                                            :placeholder="$t('Email del empleado')"
                                             class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
                                             >
                                     </div>
                                 </div>
-                                <!-- FIN DEL BLOQUE -->
 
-
-                                <!-- INPUT DE CATEGORIA -->
                                 <div class="col-span-3">
-                                    <label class="block text-sm font-medium leading-5 text-gray-700" for="categoria">{{
-                                        $t('Categoria') }}</label>
+                                    <label class="block text-sm font-medium leading-5 text-gray-700" for="telefono">{{
+                                        $t('telefono') }}</label>
                                     <div class="mt-1 relative rounded-md shadow-sm">
-                                        <input-select id="categoria" v-model="ticket.categoria_id" :options="categoriaList"
-                                            option-label="name"  />
+                                        <input id="telefono" v-model="empleado.telefono"
+                                            :placeholder="$t('Telefono del empleado')"
+                                            class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                            >
                                     </div>
                                 </div>
-                                <!-- FIN DEL BLOQUE -->
-
-
-                                <!-- INPUT DE ESTATUS DEL EQUIPO -->
+                                                                  
                                 <div class="col-span-3">
-                                    <label class="block text-sm font-medium leading-5 text-gray-700" for="status">{{
-                                        $t('Estatus o condiciones del equipo') }}</label>
+                                    <label class="block text-sm font-medium leading-5 text-gray-700" for="role">Turno</label>
                                     <div class="mt-1 relative rounded-md shadow-sm">
-                                        <input-select id="status" v-model="ticket.status_id" :options="statusList"
-                                            option-label="name"  />
+                                        <select
+                                            id="role"
+                                            v-model="empleado.turno_id"
+                                            class="mt-1 block form-select w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                        >
+                                            <option :value="null" disabled>Selecciona una opcion</option>
+                                            <option v-for="turno in turnoList" :value="turno.id">{{ turno.name }}</option>
+                                        </select>
                                     </div>
                                 </div>
 
+                                <!-- INPUT DE OFICINA EN LA QUE PERTENECE EL EQUIPO -->
+                                <div class="col-span-3">
+                                    <label class="block text-sm font-medium leading-5 text-gray-700" for="department">{{ $t('Oficina') }}</label>
+                                    <div class="mt-1 relative rounded-md shadow-sm">
+                                      <input-select id="department" v-model="empleado.oficina_id" :options="oficinaList" option-label="name" required />
+                                    </div>
+                                  </div>
+
                                 <!-- FIN DEL BLOQUE -->
+
 
                             </div>
                         </div>
@@ -93,7 +96,7 @@
                                 {{ $t('Cancelar') }}
                             </router-link>
                             <button class="btn btn-green shadow-sm rounded-md" type="submit">
-                                {{ $t('Guardar cambios') }}
+                                {{ $t('guardar cambios') }}
                             </button>
                         </div>
                     </div>
@@ -111,7 +114,7 @@ export default {
     name: "new",
     metaInfo() {
         return {
-            title: this.$i18n.t('Create ticket')
+            title: this.$i18n.t('editar empleado')
         }
     },
     data() {
@@ -123,106 +126,65 @@ export default {
 
 
             uploadingFileProgress: 0,
-            ticket: {
-                oficina_id: null,
-                modelo: null,
-                numero_serie: null,
-                categoria_id: null,
-                status_id: null,
-                attachments: []
 
+            empleado:{
+                name:null,
+                apellidos:null,
+                correo:null,
+                telefono:null,
+                turno_id:null,
+                oficina_id:null,
             },
-            userList: [],
-            statusList: [],
-            categoriaList: [],
-            oficinaList: []
+            turnoList:[],
+            oficinaList:[]
         }
     },
 
     mounted() {
         this.getFilters();
-        this.getTicket();
+        // this.getTicket();
+        this.getEmpleados();
     },
     methods: {
         getFilters() {
             const self = this;
             self.loading.form = true;
-            axios.get('api/dashboard/tickets/filters').then(function (response) {
-                self.userList = response.data.customers;
+            axios.get('api/dashboard/admin/empleados/filters').then(function (response) {
                 self.oficinaList = response.data.oficinas;
-                self.statusList = response.data.statuses;
-                self.categoriaList = response.data.categorias;
+                self.turnoList = response.data.turnos
+                //console.log(self.turnoList)
                 self.loading.form = false;
             }).catch(function () {
                 self.loading.form = false;
             })
         },
-        getTicket() {
-            const self = this;
-            self.loading.form = true;
-            axios.get('api/dashboard/tickets/' + self.$route.params.uuid).then(function (response) {
-                self.loading.form = false;
-                self.ticket = response.data;
-                self.ticketReply.status_id = response.data.status_id;
-            }).catch(function () {
+        getEmpleados(){
+            const self=this;
+            self.loading.form=true;
+            axios.get('api/dashboard/admin/empleados/'+self.$route.params.id).then(function (response){
+                self.loading.form =false;
+                self.empleado=response.data;
+                //console.log(self.empleado);
                 
+            }).catch(function(){
+
             });
         },
-        saveTicket() {
+        saveEmpleado() {
             const self = this;
             self.loading.form = true;
-            console.log(self.ticket);
-            axios.put('api/dashboard/tickets/' + self.$route.params.uuid, self.ticket).then(function () {
+            console.log(self.empleado);
+            axios.put('api/dashboard/admin/empleados/' + self.$route.params.id, self.empleado).then(function () {
                 self.loading = false;
                 self.$notify({
                     title: self.$i18n.t('Success').toString(),
                     type: 'success'
                 });
-                self.$router.push('/dashboard/equipos');
+                self.$router.push('/dashboard/admin/empleados');
             }).catch(function () {
                 self.loading = false;
             });
         },
-        selectUploadFile() {
-            if (!this.loading.file) {
-                this.$refs.fileInput.click();
-            } else {
-                this.$notify({
-                    title: this.$i18n.t('Error').toString(),
-                    text: this.$i18n.t('A file is being uploaded').toString(),
-                    type: 'warning'
-                });
-            }
-        },
-
-        uploadFile(e) {
-            const self = this;
-            const formData = new FormData();
-            self.loading.file = true;
-            formData.append('file', e.target.files[0]);
-            axios.post(
-                'api/dashboard/tickets/attachments',
-                formData,
-                {
-                    headers: { 'Content-Type': 'multipart/form-data' },
-                    onUploadProgress: function (progressEvent) {
-                        self.uploadingFileProgress = Math.round((progressEvent.loaded / progressEvent.total) * 100);
-                    }.bind(this)
-                }
-            ).then(function (response) {
-                self.loading.file = false;
-                self.uploadingFileProgress = 0;
-                self.$refs.fileInput.value = null;
-                self.ticket.attachments.push(response.data);
-            }).catch(function () {
-                self.loading.file = false;
-                self.uploadingFileProgress = 0;
-                self.$refs.fileInput.value = null;
-            });
-        },
-        removeAttachment(attachment) {
-            this.ticket.attachments.splice(attachment, 1);
-        }
     },
 }
 </script>

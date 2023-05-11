@@ -455,7 +455,7 @@ export default {
     name: "list",
     metaInfo() {
         return {
-            title: this.$i18n.t('Tickets')
+            title: this.$i18n.t('equipos')
         }
     },
     mixins: [clickaway],
@@ -463,6 +463,7 @@ export default {
         return {
             loading: true,
             filtersSidebar: false,
+
             filters: {
                 search: '',
                 modelo:'',
@@ -471,6 +472,7 @@ export default {
                 statuses: [],
                 oficinas:[]
             },
+            
             quickActions: {
                 delete: false,
             },

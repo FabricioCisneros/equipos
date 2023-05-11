@@ -12,6 +12,11 @@
         <menu-item
             v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.TicketController']"
             :label="$t('Equipos')" :mobile="mobile" icon="font-awesome.device-regular" to="/dashboard/Equipos"></menu-item>
+
+        <menu-item
+            v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.TicketController']"
+            :label="$t('Directorio de equipos')" :mobile="mobile" icon="font-awesome.clip-regular" to="/dashboard/Directorio-de-equipos"></menu-item>
+            
         <!-- <menu-item
             v-if="$store.state.permissions && $store.state.permissions['App.Http.Controllers.Api.Dashboard.CannedReplyController']"
             :label="$t('Canned replies')" :mobile="mobile" icon="font-awesome.comments-alt-regular"
