@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Dashboard\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Directorio\StoreRequest;
 use App\Http\Resources\Categoria\CategoriaResource;
+use App\Http\Resources\Directorio\DirectorioListResource;
 use App\Http\Resources\Directorio\DirectorioManageResource;
 use App\Http\Resources\Empleado\EmpleadoListResource;
 use App\Http\Resources\Oficina\OficinaResource;
@@ -107,7 +108,25 @@ class DirectorioController extends Controller
             return response()->json(['message' => __('An error occurred while saving data')], 500);
     }
 
-    public function index(){
+    public function index(Request $request):JsonResponse{
+        $sort =json_decode($request->get('sort',json_encode(['order' => 'asc', 'column' => 'created_at'], JSON_THROW_ON_ERROR)), true, 512, JSON_THROW_ON_ERROR);
+        
+        if (!array_key_exists('column', $sort)) {
+            $sort['column'] = 'created_at'; // valor predeterminado si la clave 'column' no está presente
+        }
 
+        $items = Directorio::filter($request->all())
+        ->orderBy($sort['column'], $sort['order'])
+        ->paginate((int) $request->get('perPage', 10));
+
+        return response()->json([
+            'items' => DirectorioListResource::collection($items->items()),
+            'pagination' => [
+                'currentPage' => $items->currentPage(),
+                'perPage' => $items->perPage(),
+                'total' => $items->total(),
+                'totalPages' => $items->lastPage()
+            ]
+        ]);
     }
 }

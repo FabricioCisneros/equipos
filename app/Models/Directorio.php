@@ -21,7 +21,7 @@ class Directorio extends Model
 
     public function empleado():BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Empleado::class);
 
     }
 
