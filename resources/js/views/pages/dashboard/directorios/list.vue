@@ -12,17 +12,17 @@
                     >
                         {{ $t('Agregar nuevo equipo') }}
                     </router-link>
-                    <div class="rounded-md shadow-sm mr-4">
+                    <div class="rounded-md flex shadow-sm mr-4">
                         <button
                             id="filter-button"
                             class="inline-flex justify-center w-full rounded-md border border border-gray-400 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150"
                             type="button"
                             @click="openFiltersSidebar"
                             >
-                            <svg-vue class="self-center mr-3 h-4 w-4" icon="font-awesome.filter-regular"></svg-vue>
+                            <svg-vue class="self-center mr-3 h-4 w-4" icon="font-awesome.user-regular"></svg-vue>
                             {{ $t('Filtrar por empleado') }}
                             <svg-vue class="self-center ml-2.5 -mr-1.5 h-3 w-3" icon="font-awesome.chevron-right-solid"></svg-vue>
-                        </button>
+                        </button>            
                         <div v-show="filtersSidebar" class="fixed inset-0 overflow-hidden z-30">
                             <div class="absolute inset-0 overflow-hidden">
                                 <section v-on-clickaway="closeFiltersSidebar" :style="{top: '65px'}" class="absolute inset-y-0 right-0 pl-10 max-w-full flex">
@@ -119,79 +119,146 @@
                                                             />
                                                             </div> 
 
-                                                           <!-- <div class="col-span-3 mb-2">
+                                                            <div class="col-span-3 mb-2">
+                                                                <label class="block text-sm font-medium leading-5 text-gray-700" for="label">
+                                                                    {{ $t('Turno') }}
+                                                                </label>
+                                                                <input-select
+                                                                    id="Turno"
+                                                                    v-model="filters.turnoEmpleado"
+                                                                    :options="turnoList"
+                                                                    multiple
+                                                                    option-label="name"
+                                                                    @change="getDirectorio"
+                                                                />
+                                                            </div>
+                                                            <div class="col-span-3 mb-2">
+                                                                <label class="block text-sm font-medium leading-5 text-gray-700" for="label">
+                                                                    {{ $t('items por pagina') }}
+                                                                </label>
+                                                                <input-select
+                                                                    id="per_page"
+                                                                    v-model="perPage"
+                                                                    :options="[{id: 5, name: 5}, {id: 10, name: 10}, {id: 25, name: 25}, {id: 50, name: 50}]"
+                                                                    option-label="name"
+                                                                    required
+                                                                    @change="getDirectorio"
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    </transition>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="rounded-md shadow-sm mr-4">
+                        <button
+                            id="filter-button"
+                            class="inline-flex justify-center w-full rounded-md border border border-gray-400 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition ease-in-out duration-150"
+                            type="button"
+                            @click="openFiltersSidebarDevice"
+                            >
+                            <svg-vue class="self-center mr-3 h-4 w-4" icon="font-awesome.device-regular"></svg-vue>
+                            {{ $t('Filtrar por equipo') }}
+                            <svg-vue class="self-center ml-2.5 -mr-1.5 h-3 w-3" icon="font-awesome.chevron-right-solid"></svg-vue>
+                        </button>            
+                        <div v-show="filtersDeviceSidebar" class="fixed inset-0 overflow-hidden z-30">
+                            <div class="absolute inset-0 overflow-hidden">
+                                <section v-on-clickaway="closeFiltersSidebarDevice" :style="{top: '65px'}" class="absolute inset-y-0 right-0 pl-10 max-w-full flex">
+                                    <transition
+                                        duration="500"
+                                        enter-active-class="transform transition ease-in-out duration-500"
+                                        enter-class="translate-x-full"
+                                        enter-to-class="translate-x-0"
+                                        leave-active-class="transform transition ease-in-out duration-500"
+                                        leave-class="translate-x-0"
+                                        leave-to-class="translate-x-full"
+                                    >
+                                        <div v-show="filtersDeviceSidebar" class="w-screen max-w-xs">
+                                            <div class="h-full flex flex-col space-y-4 bg-white shadow-xl">
+                                                <header class="px-4 pt-4 sm:px-6">
+                                                    <div class="flex items-start justify-between space-x-3">
+                                                        <h2 class="text-lg leading-7 font-medium text-gray-900">
+                                                            {{ $t('Filtrar resultados por caracteristicas del equipo') }}
+                                                        </h2>
+                                                        <div class="h-7 flex items-center">
+                                                            <button aria-label="Close panel" class="text-gray-400 hover:text-gray-500 transition ease-in-out duration-150" type="button" @click="closeFiltersSidebar">
+                                                                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                                                                </svg>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </header>
+                                                 <div class="relative flex-1 px-4 sm:px-6 h-full border-t overflow-y-scroll">
+                                                    <div class="absolute inset-0 px-4 sm:px-6">
+                                                        <div class="grid grid-cols-3 py-3">
+                                                            <div class="col-span-3 mb-2">
+                                                                <label class="block text-sm font-medium leading-5 text-gray-700" for="label">
+                                                                    {{ $t('Buscar por modelo o numero de serie') }}
+                                                                </label>
+                                                                <div class="relative flex-grow focus-within:z-10">
+                                                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                                        <svg-vue class="h-4 w-4 text-gray-400" icon="font-awesome.device-regular"></svg-vue>
+                                                                    </div>
+                                                                    <input
+                                                                        id="search"
+                                                                        v-model.lazy="filters.NsModelo"
+                                                                        :placeholder="$t('Numero de serie o modelo')"
+                                                                        aria-label="Search"
+                                                                        class="form-input block w-full rounded-l-md pl-10 text-sm transition ease-in-out duration-150"
+                                                                        @change="getDirectorio"
+                                                                    >
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-span-3 mb-2">
+                                                                <label class="block text-sm font-medium leading-5 text-gray-700" for="label">
+                                                                    {{ $t('Estado') }}
+                                                                </label>
+                                                                <div class="relative flex-grow focus-within:z-10">
+                                                                        <select
+                                                                            v-model="selectedStateEmpleado"
+                                                                            class="mt-1 block form-select w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                                                            @change="updateOficinasEmpleado"
+                                                                        >
+                                                                        <option value="">Selecciona un estado</option>
+                                                                        <option v-for="state in states" :value="state">{{ state.name }}</option>
+                                                                        </select>
+                                                                </div>
+                                                            </div> 
+                                                            <div class="col-span-3 mb-2">
                                                                 <label class="block text-sm font-medium leading-5 text-gray-700" for="label">
                                                                     {{ $t('Oficina') }}
                                                                 </label>
                                                                 <input-select
-                                                                    id="oficina"
-                                                                    v-model="filters.oficinas"
-                                                                    :options="oficinaList"
-                                                                    multiple
-                                                                    option-label="name"
-                                                                    @change="getTickets"
-                                                                />
-                                                            </div> -->
+                                                                id="oficina"
+                                                                v-model="filters.oficinasEquipo"
+                                                                :options="oficinaListEmpleado"
+                                                                multiple
+                                                                option-label="name"
+                                                                @change="getDirectorio"
+                                                            />
+                                                            </div> 
 
-                                                            <!-- <div class="col-span-3 mb-2">
+                                                            <div class="col-span-3 mb-2">
                                                                 <label class="block text-sm font-medium leading-5 text-gray-700" for="label">
-                                                                    {{ $t('Estatus del equipo') }}
+                                                                    {{ $t('Turno') }}
                                                                 </label>
                                                                 <input-select
-                                                                    id="status"
-                                                                    v-model="filters.statuses"
-                                                                    :options="statusList"
+                                                                    id="Turno"
+                                                                    v-model="filters.turnoEmpleado"
+                                                                    :options="turnoList"
                                                                     multiple
                                                                     option-label="name"
-                                                                    @change="getTickets"
+                                                                    @change="getDirectorio"
                                                                 />
-                                                            </div> -->
-                                                             <!-- <div class="col-span-3 mb-2">
-                                                                <label class="block text-sm font-medium leading-5 text-gray-700" for="label">
-                                                                    {{ $t('Ordenar por:') }}
-                                                                </label>
-                                                                <div class="relative inline-flex w-full">
-                                                                    <button
-                                                                        class="relative -ml-px inline-flex items-center px-4 py-2 rounded-l-md border border-gray-400 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700"
-                                                                        type="button"
-                                                                        @click="changeSort"
-                                                                    >
-                                                                        <svg-vue
-                                                                            v-show="sort.order === 'asc'"
-                                                                            class="h-5 w-5 text-gray-400"
-                                                                            icon="font-awesome.sort-amount-down-alt-regular"
-                                                                        />
-                                                                        <svg-vue
-                                                                            v-show="sort.order === 'desc'"
-                                                                            class="h-5 w-5 text-gray-400"
-                                                                            icon="font-awesome.sort-amount-up-alt-regular"
-                                                                        />
-                                                                        <template>
-                                                                            <template v-if="sort.order==='asc'">
-                                                                                <span class="ml-2">{{ $t('ascendente') }}</span>
-                                                                            </template>
-                                                                            <template v-else>
-                                                                                <span class="ml-2">{{ $t('descente') }}</span>
-                                                                            </template>
-                                                                        </template>
-
-                                                                        
-                                                                    </button>
-                                                                    <select
-                                                                        id="sort.column"
-                                                                        v-model="sort.column"
-                                                                        aria-label="Sort by"
-                                                                        class="-ml-px block form-select w-full pl-3 pr-9 py-2 rounded-l-none rounded-r-md border border-gray-400 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
-                                                                        @change="changeSort"
-                                                                    >
-                                                                        <option value="status_id">{{ $t('Status') }}</option>
-                                                                        <option value="oficina_id">{{ $t('oficina') }}</option>
-                                                                        <option value="categoria_id">{{ $t('categoria') }}</option>
-                                                                        <option value="numero_serie">{{ $t('numero de serie') }}</option>
-                                                                        <option value="modelo">{{ $t('modelo') }}</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div> -->
+                                                            </div>
                                                             <div class="col-span-3 mb-2">
                                                                 <label class="block text-sm font-medium leading-5 text-gray-700" for="label">
                                                                     {{ $t('items por pagina') }}
@@ -341,10 +408,16 @@ export default {
         return {
             loading: true,
             filtersSidebar:false,
+            filtersDeviceSidebar:false,
             filters:{
                 searchEmpleado:'',
                 correo:'',
                 oficinasEmpleado:[],
+                turnoEmpleado:[],
+
+                NsModelo:'',
+                oficinasEquipo:[],
+
             },
             directorioList:[],
             page: 1,
@@ -393,6 +466,9 @@ export default {
             oficinaListEmpleado:[],
             turnoList:[],
 
+            selectedStateEquipo:'',
+            oficinaListEquipo:[],
+            EstatusEquipo:[]
         }
     },
 
@@ -401,6 +477,9 @@ export default {
             return this.filters.searchEmpleado !== ''
                 || this.filters.correo!==''
                 || this.filters.oficinasEmpleado.length !== 0
+                || this.filters.turnoEmpleado.length !== 0
+                || this.filters.NsModelo !==''
+                || this.filters.oficinasEquipo.length !==0
         }
     },
 
@@ -424,6 +503,16 @@ export default {
             this.filtersSidebar = false;
         },
 
+        openFiltersSidebarDevice() {
+            const self = this;
+            setTimeout(function () {
+                self.filtersDeviceSidebar = true;
+            }, 100);
+        },
+        closeFiltersSidebarDevice() {
+            this.filtersDeviceSidebar = false;
+        },
+
             getDirectorio(){
                 const self= this;
                 self.loading=true;
@@ -434,9 +523,14 @@ export default {
                     perPage: self.perPage,
                     searchEmpleado:self.filters.searchEmpleado,
                     oficinasEmpleado: self.filters.oficinasEmpleado,
-                    correo:self.filters.correo
-                };
+                    correo:self.filters.correo,
+                    turnoEmpleado:self.filters.turnoEmpleado,
 
+
+                    NsModelo:self.filters.NsModelo,
+                    oficinasEquipo:self.filters.oficinasEquipo,
+                };
+                console.log(self.filters.turnoEmpleado);
                 axios.get('api/dashboard/admin/directorio',{
                     params: params
                 }).then(function(response){
@@ -455,6 +549,7 @@ export default {
                 });
                 
             },
+
         updateOficinasEmpleado(){
             const self=this;
            // console.log(self.selectedState);
@@ -465,7 +560,6 @@ export default {
                 self.loading.form;
             });
         },
-
         getDatosEmpleado(){
             const self = this;
             axios.get('api/dashboard/admin/directorio/datosEmpleado').then(function(response){
@@ -476,10 +570,11 @@ export default {
                 self.loading.form=false;
             });
         },
+        }
+
     }
-       
-    
-}
+
+
 </script>
 
 <style lang="scss">
