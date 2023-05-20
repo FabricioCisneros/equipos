@@ -648,7 +648,6 @@ export default {
             
         },
         updateOficinas(){
-
             const self=this;
            // console.log(self.selectedState);
             //console.log(self.selectedState.name);
